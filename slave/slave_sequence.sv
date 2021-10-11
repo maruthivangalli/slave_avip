@@ -40,24 +40,24 @@ class seq extends slave_sequence;
   //-------------------------------------------------------
   // Factory Registration is done to override the object
   //-------------------------------------------------------
-  `uvm_object_utils(seq)
+  `uvm_object_utils(sseq1)
 
   //-------------------------------------------------------
   // Externally defined tasks and functions
   //-------------------------------------------------------
-  extern function new(string name = "seq");
+  extern function new(string name = "sseq1");
   extern virtual task body();
 
-endclass : seq
+endclass : sseq1
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
-// Initializes seq class object 
+// Initializes sseq1 class object 
 //
 // Parameters:
-//  name - seq
+//  name - sseq1
 //--------------------------------------------------------------------------------------------
-function seq::new(string name = "seq");
+function sseq1::new(string name = "sseq1");
   super.new(name);
 endfunction : new
 
@@ -66,7 +66,7 @@ endfunction : new
 //  To create request which is comes from driver
 //-------------------------------------------------------
 
-task seq::body();
+task sseq1::body();
 
 endtask : body
 
