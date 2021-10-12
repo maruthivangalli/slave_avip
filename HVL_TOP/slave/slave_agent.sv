@@ -13,10 +13,9 @@
    `uvm_component_utils(slave_agent)
   //declaring handles for agent config driver monitor and sequencer
 
-  slave_agent_config s_cfg;
   slave_driver s_drv;
   slave_monitor s_mon;
-  slave_sequencer s_seqrh;
+  slave_sequencer s_seqr;
 
 
   //-------------------------------------------------------
