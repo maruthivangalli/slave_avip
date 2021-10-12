@@ -14,7 +14,7 @@ class env extends uvm_env;
 // Declaring handles for env config and slave agent config
   env_config e_cfg;
   slave_agent_config s_cfg;
-//Declaring handles for  master agent
+//Declaring handles for  slave  agent
   slave_agent agt;
 
 //Externally defined functions
