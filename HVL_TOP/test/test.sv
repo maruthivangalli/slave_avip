@@ -1,65 +1,48 @@
-`ifndef ENV_INCLUDED_
-`define ENV_INCLUDED_
+`ifndef BASE_TEST_INCLUDED_
+`define BASE_TEST_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-// Class: env
+// Class: base_test
 // Description:
-//  Environment contains slave agent and virtuaal sequencer
+//  Base test has the test scenarios for testbench which has the env, config, etc.
+//  Sequences are created and started in the test
 //--------------------------------------------------------------------------------------------
-class env extends uvm_env;
-
-  //-------------------------------------------------------
-  // Factory registration to create uvm_method and override it
-  //-------------------------------------------------------
-  `uvm_component_utils(env)
-
-  slave_agent sa;
-  virtual_sequencer v_seq;
+class base_test extends uvm_test;
+  `uvm_component_utils(base_test)
+  
+  env envh;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
-  extern function new(string name = "env", uvm_component parent = null);
+  extern function new(string name = "base_test", uvm_component parent = null);
   extern virtual function void build_phase(uvm_phase phase);
-  extern virtual function void connect_phase(uvm_phase phase);
 
-endclass : env
+endclass : base_test
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
+//  Initializes class object
 //
 // Parameters:
-//  name - env
+//  name - base_test
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-function env::new(string name = "env",
+function base_test::new(string name = "base_test",
                                  uvm_component parent = null);
   super.new(name, parent);
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// Description:
 //  Create required ports
 //
 // Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
-function void env::build_phase(uvm_phase phase);
+function void base_test::build_phase(uvm_phase phase);
   super.build_phase(phase);
 endfunction : build_phase
-
-//--------------------------------------------------------------------------------------------
-// Function: connect_phase
-// Description:
-//  To connect driver and sequencer
-//
-// Parameters:
-//  phase - uvm phase
-//--------------------------------------------------------------------------------------------
-function void env::connect_phase(uvm_phase phase);
-  super.connect_phase(phase);
-endfunction : connect_phase
 
 `endif
 

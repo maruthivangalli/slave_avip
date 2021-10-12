@@ -1,65 +1,70 @@
-`ifndef ENV_INCLUDED_
-`define ENV_INCLUDED_
+`ifndef SLAVE_AGENT_TOP_INCLUDED_
+`define SLAVE_AGENT_TOP_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-// Class: env
+// Class: slave_agent_top
 // Description:
-//  Environment contains slave agent and virtuaal sequencer
+//  Used to get env_config and set agent_config
 //--------------------------------------------------------------------------------------------
-class env extends uvm_env;
+class slave_agent_top extends uvm_env;
 
   //-------------------------------------------------------
-  // Factory registration to create uvm_method and override it
+  // Factory registration to use and override methods
   //-------------------------------------------------------
-  `uvm_component_utils(env)
+  `uvm_component_utils(slave_agent_top)
 
-  slave_agent sa;
-  virtual_sequencer v_seq;
+  slave_agent s_agt;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
-  extern function new(string name = "env", uvm_component parent = null);
+  extern function new(string name = "slave_agent_top", uvm_component parent = null);
   extern virtual function void build_phase(uvm_phase phase);
-  extern virtual function void connect_phase(uvm_phase phase);
+  extern virtual task run_phase(uvm_phase phase);
 
-endclass : env
+endclass : slave_agent_top
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
 //
 // Parameters:
-//  name - env
+//  name - slave_agent_top
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-function env::new(string name = "env",
+function slave_agent_top::new(string name = "slave_agent_top",
                                  uvm_component parent = null);
   super.new(name, parent);
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// Description:
-//  Create required ports
+// <Description_here>
 //
 // Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
-function void env::build_phase(uvm_phase phase);
+function void slave_agent_top::build_phase(uvm_phase phase);
   super.build_phase(phase);
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
-// Function: connect_phase
-// Description:
-//  To connect driver and sequencer
+// Task: run_phase
+//  To print topologies
 //
 // Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
-function void env::connect_phase(uvm_phase phase);
-  super.connect_phase(phase);
-endfunction : connect_phase
+task slave_agent_top::run_phase(uvm_phase phase);
+
+  phase.raise_objection(this, "slave_agent_top");
+
+  super.run_phase(phase);
+
+    uvm_top.print_topology;
+
+  phase.drop_objection(this);
+
+endtask : run_phase
 
 `endif
 
