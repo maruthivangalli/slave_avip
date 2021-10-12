@@ -1,5 +1,5 @@
 `ifndef _ENV_INCLUDED_
-`define _ENV_INCLUDED_ENV_INCLUDED_
+`define _ENV_INCLUDED_
 //--------------------------------------------------------------------------
 //Class:env
 //User- defined environment is derived from uvm_env,uvm_env is inherited from uvm_component.
@@ -11,8 +11,10 @@ class env extends uvm_env;
 //and overide in future if necessary
 
   `uvm_component_utils(env)
-// Declaring handles for slave_agent and env config
+// Declaring handles for env config and slave agent config
   env_config e_cfg;
+  slave_agent_config s_cfg;
+//Declaring handles for  master agent
   slave_agent agt;
 
 //Externally defined functions
